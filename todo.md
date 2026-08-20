@@ -14,4 +14,5 @@
 - [x] Escrever testes Vitest para classificação, identificação inicial e bloqueio total de handoff.
 - [x] Validar o projeto em execução, revisar a interface em desktop e mobile e corrigir falhas.
 - [x] Documentar o roteiro de integração oficial com WhatsApp Business Platform, incluindo contas, webhook, templates e limites de handoff.
-- [ ] Salvar checkpoint do piloto validado e entregar a versão para revisão.
+- [x] Salvar checkpoint do piloto validado e entregar a versão para revisão.
+- [ ] Associar o código do piloto ao repositório privado https://github.com/enzo2812/crm-ilana-igm-.git sem enviar segredos, credenciais ou dados de atendimento.
