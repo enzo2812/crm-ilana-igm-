@@ -4,13 +4,27 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import DashboardLayout from "./components/DashboardLayout";
 import Home from "./pages/Home";
+
+function CRMPage() {
+  return (
+    <DashboardLayout>
+      <Home />
+    </DashboardLayout>
+  );
+}
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
+      <Route path={"/"} component={CRMPage} />
+      <Route path={"/conversas"} component={CRMPage} />
+      <Route path={"/simulador"} component={CRMPage} />
+      <Route path={"/conhecimento"} component={CRMPage} />
+      <Route path={"/tarefas"} component={CRMPage} />
+      <Route path={"/auditoria"} component={CRMPage} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

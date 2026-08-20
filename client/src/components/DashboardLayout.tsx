@@ -21,15 +21,19 @@ import {
 } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { LayoutDashboard, LogOut, PanelLeft, Users } from "lucide-react";
+import { BookOpen, ClipboardCheck, LayoutDashboard, LogOut, MessageCircleMore, PanelLeft, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
 import { Button } from "./ui/button";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Page 1", path: "/" },
-  { icon: Users, label: "Page 2", path: "/some-path" },
+  { icon: LayoutDashboard, label: "Visão geral", path: "/" },
+  { icon: Users, label: "Conversas", path: "/conversas" },
+  { icon: MessageCircleMore, label: "Simulador", path: "/simulador" },
+  { icon: BookOpen, label: "Conhecimento", path: "/conhecimento" },
+  { icon: ClipboardCheck, label: "Tarefas", path: "/tarefas" },
+  { icon: ShieldCheck, label: "Auditoria", path: "/auditoria" },
 ];
 
 const SIDEBAR_WIDTH_KEY = "sidebar-width";
@@ -62,10 +66,10 @@ export default function DashboardLayout({
         <div className="flex flex-col items-center gap-8 p-8 max-w-md w-full">
           <div className="flex flex-col items-center gap-6">
             <h1 className="text-2xl font-semibold tracking-tight text-center">
-              Sign in to continue
+              Acesse o CRM IGM
             </h1>
             <p className="text-sm text-muted-foreground text-center max-w-sm">
-              Access to this dashboard requires authentication. Continue to launch the login flow.
+              Este painel é restrito à equipe responsável pelo atendimento.
             </p>
           </div>
           <Button
@@ -73,7 +77,7 @@ export default function DashboardLayout({
             size="lg"
             className="w-full shadow-lg hover:shadow-xl transition-all"
           >
-            Sign in
+              Entrar no painel
           </Button>
         </div>
       </div>
@@ -168,9 +172,15 @@ function DashboardLayoutContent({
               </button>
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="font-semibold tracking-tight truncate">
-                    Navigation
-                  </span>
+                  <div className="flex min-w-0 items-center gap-2.5">
+                    <div className="grid size-7 place-items-center rounded-[0.6rem] border border-sidebar-border bg-sidebar-primary/10 text-sidebar-primary">
+                      <Sparkles className="size-3.5" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="block truncate text-sm font-bold tracking-tight">CRM IGM</span>
+                      <span className="block truncate text-[9px] font-bold uppercase tracking-[0.14em] text-sidebar-foreground/55">IA supervisionada</span>
+                    </div>
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -200,6 +210,12 @@ function DashboardLayoutContent({
           </SidebarContent>
 
           <SidebarFooter className="p-3">
+            {!isCollapsed ? (
+              <div className="mb-3 flex items-center gap-2 rounded-xl border border-sidebar-border/70 bg-sidebar-accent/40 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.1em] text-sidebar-foreground/75">
+                <span className="size-1.5 rounded-full bg-sidebar-primary" />
+                Handoff protegido
+              </div>
+            ) : null}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-3 rounded-lg px-1 py-1 hover:bg-accent/50 transition-colors w-full text-left group-data-[collapsible=icon]:justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
@@ -224,7 +240,7 @@ function DashboardLayoutContent({
                   className="cursor-pointer text-destructive focus:text-destructive"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Sign out</span>
+                  <span>Sair</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
